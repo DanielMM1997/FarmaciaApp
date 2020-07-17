@@ -248,11 +248,12 @@ public class FarmaciaApp {
         //visualización de los productos que ofrece nuestra farmacia
         ShoppingCart s = new ShoppingCart(new Date("15/10/2019"));        
         DrugStore farmacia = new DrugStore(c1, s); 
+        CuentasApp cuentas = new CuentasApp();
         
         FarmaciaForm farmaciaForm = new FarmaciaForm();
         farmaciaForm.assignDrugStore(farmacia); 
+        farmaciaForm.assignCuentas(cuentas);
         farmaciaForm.showCategoryProducts();
-        farmaciaForm.showAll();
-        farmaciaForm.setVisible(true);
+        farmaciaForm.showAll();        
     }
 }
