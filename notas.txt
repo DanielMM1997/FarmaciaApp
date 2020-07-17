@@ -1,0 +1,7 @@
+Receta Electornica: Introducir nombre del medicamento y buscarlo en el array de products, si no esta el medicamento se mostara un mensaje de advertencia, si se encuentra introducirlo al carro y aplicandole el descuento.
+
+Filtrar por: Mostrara varias opcines para filtrar por categorias. (higine bucal, cremas, pastillas,...)
+
+Mostral historial: consta de los lista de de productos, en productos favoritos se guardaran los productos más veces comprados, y en historial de compra guardar los ultimos productos que fueron guardados.
+
+
