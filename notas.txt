@@ -4,4 +4,6 @@ Filtrar por: Mostrara varias opcines para filtrar por categorias. (higine bucal,
 
 Mostral historial: consta de los lista de de productos, en productos favoritos se guardaran los productos más veces comprados, y en historial de compra guardar los ultimos productos que fueron guardados.
 
+Validar los datos
+
 

@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Usuario
- */
 public class ShoppingCart {
     
     private Date deliveryTime;
@@ -35,7 +26,7 @@ public class ShoppingCart {
     }
     
     public ArrayList<String> getProducts () {
-        ArrayList <String> names = new ArrayList <String> ();
+        ArrayList <String> names = new ArrayList<String>();
         for (int i = 0; i < prods.size(); i++) {
             names.add(prods.get(i).getName());
         }

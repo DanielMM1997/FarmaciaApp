@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
+import file.DataBase;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -11,33 +7,22 @@ import java.text.NumberFormat;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 import model.*;
-/**
- *
- * @author danie
- */
+
 public class PagoForm extends JFrame implements ActionListener{
-    private JLabel lNombre, lCorreo, lCodigo, lDomicilio, lTelefono, lNTarjeta, 
-            lRegistrarse, lISeccion, lEntrega, lPeriodo, fondo;
-    private JTextField tNombre, tCorreo, tCodigo, tDomicilio, tTelefono, 
-            tNTarjeta;
+    private JLabel lNombre, lCorreo, lDomicilio, lTelefono, lNTarjeta, 
+            lRegistrarse, lISeccion, lEntrega, lPeriodo, lSesion, fondo;
+    private JTextField tNombre, tCorreo, tDomicilio, tTelefono, 
+            tNTarjeta, tPrecio;
     private Button bAtras, bPagar, bRegistrarse, bISesion, bAyuda;
     private JRadioButton rbPuntual, rbSemanal, rbQuincenal, rbMensual;
     private ButtonGroup gb;
-    private JFormattedTextField tPrecio;
     private JTextArea lAyuda;
+    private JMenu menu1;
+    private JMenuBar menuBar;
+    private JMenuItem mEditarDatos, mVerPeidos, mEditarCuenta, mCerrarSesion;
     private JPanel panel;
     public DrugStore farmacia;
     public FarmaciaForm farmaciaform;
-    public CuentasApp cuentas;
-    
-    public void assignDrugStore (DrugStore farmacia, FarmaciaForm farmaciaform) {
-        this.farmacia = farmacia;
-        this.farmaciaform = farmaciaform;
-    }
-    
-    public void assing(CuentasApp cuentas){
-        this.cuentas = cuentas;
-    }
     
     public PagoForm(){
         setBounds (400, 190, 487, 400);
@@ -54,8 +39,6 @@ public class PagoForm extends JFrame implements ActionListener{
         lNombre.setOpaque(true);
         lCorreo = new JLabel(" E-mail:");
         lCorreo.setOpaque(true);
-        lCodigo = new JLabel(" C. Postal:");
-        lCodigo.setOpaque(true);
         lDomicilio = new JLabel(" Domicilio:");
         lDomicilio.setOpaque(true);
         lTelefono = new JLabel(" Telefono:");
@@ -75,20 +58,23 @@ public class PagoForm extends JFrame implements ActionListener{
         fondo = new JLabel();
         lAyuda = new JTextArea();
         lAyuda.setOpaque(false);
+        lAyuda.setEditable(false);
         tNombre = new JTextField("");
         tCorreo = new JTextField("");
-        tCodigo = new JTextField("");
         tDomicilio = new JTextField("");
         tTelefono = new JTextField("");
         tNTarjeta = new JTextField("");
-        tPrecio = new JFormattedTextField();
-        tPrecio.setFormatterFactory(new DefaultFormatterFactory(new NumberFormatter(NumberFormat.getCurrencyInstance())));
+        tPrecio = new JTextField("");
         bAtras = new Button("Atrás");
         bPagar = new Button("Realizar pago");
         bRegistrarse = new Button("Registrarse");
         bISesion = new Button("Iniciar sesión");
         bAyuda = new Button("?");
+        lSesion = new JLabel("");
+        lSesion.setFont(new Font("Tohamo", 3, 13));
+        lSesion.setVisible(false);
         panel = new JPanel();
+        panel.setLayout(null);
         rbPuntual = new JRadioButton("Puntual", true);
         rbSemanal = new JRadioButton("Semanal");
         rbQuincenal = new JRadioButton("Quincenal");
@@ -97,52 +83,61 @@ public class PagoForm extends JFrame implements ActionListener{
         
         add(lNombre);
         add(lCorreo);
-        add(lCodigo);
         add(lDomicilio);
         add(lTelefono);
         add(lNTarjeta);
-        add(lRegistrarse);
-        add(lISeccion);
         add(lEntrega);
         add(lPeriodo);
         add(tNombre);
         add(tCorreo);
-        add(tCodigo);
         add(tDomicilio);
         add(tTelefono);
         add(tNTarjeta);
         add(tPrecio);
         add(bAtras);
         add(bPagar);
-        add(bRegistrarse);
-        add(bISesion);
         add(bAyuda);
         add(rbPuntual);
         add(rbSemanal);
         add(rbQuincenal);
         add(rbMensual);
         add(lAyuda);
-        add(panel);
-        add(fondo);        
+        add(lSesion);
         gb.add(rbPuntual);
         gb.add(rbSemanal);
         gb.add(rbQuincenal);
         gb.add(rbMensual);
+        panel.add(lRegistrarse);
+        panel.add(lISeccion);
+        panel.add(bRegistrarse);
+        panel.add(bISesion);
+        add(panel);
+        add(fondo);    
+        menu1 = new JMenu("Opciones");
+        menuBar = new JMenuBar();        
+        mEditarDatos = new JMenuItem("Editar datos"); 
+        mVerPeidos = new JMenuItem("Ver pedidos"); 
+        mEditarCuenta = new JMenuItem("Editar cuenta"); 
+        mCerrarSesion = new JMenuItem("Cerrar sesión");
+        menu1.add(mEditarDatos);
+        menu1.add(mVerPeidos); 
+        menu1.add(mEditarCuenta);     
+        menu1.add(mCerrarSesion);
+        menuBar.add(menu1);
         
         lRegistrarse.setBounds(80, 12, 170, 20);
         lISeccion.setBounds(80, 38, 175, 20);
+        lSesion.setBounds(310, 20, 200, 20);
         lEntrega.setBounds(100, 115, 140, 20);
         lPeriodo.setBounds(300, 140, 120, 20);
         lNombre.setBounds(30, 140, 60, 20);
         lCorreo.setBounds(40, 165, 50, 20);
-        lCodigo.setBounds(30, 190, 60, 20);
         lDomicilio.setBounds(30, 215, 60, 20);
         lTelefono.setBounds(30, 240, 60, 20);
         lNTarjeta.setBounds(10, 265, 80, 20);
         lAyuda.setBounds(260, 80, 205, 52);
         tNombre.setBounds(100, 140, 140, 20);
         tCorreo.setBounds(100, 165, 140, 20);
-        tCodigo.setBounds(100, 190, 140, 20);
         tDomicilio.setBounds(100, 215, 140, 20);
         tTelefono.setBounds(100, 240, 140, 20);
         tNTarjeta.setBounds(100, 265, 140, 20);
@@ -167,6 +162,10 @@ public class PagoForm extends JFrame implements ActionListener{
         bPagar.addActionListener(this);
         bRegistrarse.addActionListener(this);
         bISesion.addActionListener(this);
+        mEditarDatos.addActionListener(this);
+        mVerPeidos.addActionListener(this); 
+        mEditarCuenta.addActionListener(this); 
+        mCerrarSesion.addActionListener(this);
         
         MouseListener mouse = new MouseListener() {
             @Override
@@ -224,14 +223,20 @@ public class PagoForm extends JFrame implements ActionListener{
             
         }
         if (botonPulsado == bRegistrarse) {
-            RegistrarseForm regis = new RegistrarseForm();
-            regis.assing(cuentas);
+            Registrarse regis = new Registrarse();
         }
         if (botonPulsado == bISesion) {
-            IniciarSesionForm iniciar = new IniciarSesionForm();
-            iniciar.assignDrugStore(farmacia, farmaciaform);
-            iniciar.assing(cuentas);
-            iniciar.assingForm(this);
+            IniciarSesion iniciar = new IniciarSesion(this);
+            if (!iniciar.isPressCancel()) {
+                DataBase db = DataBase.getDataBase("jdbc:sqlite:FarmaciaBD.db");
+                db.open();
+                Customer cus = db.getCustomer(iniciar.getNombre());
+                db.close();
+                ponerDatos(cus);
+            }
+        }
+        if (botonPulsado == mCerrarSesion) {
+            quitarDatos();
         }
     }
     
@@ -241,11 +246,33 @@ public class PagoForm extends JFrame implements ActionListener{
         PagoForm pagar = new PagoForm();
     }
     
-    public void showPriceTotal(){
-        float precioT = 0;
-        for (int i = 0; i < farmacia.carro.prods.size(); i++) {            
-            precioT += farmacia.carro.prods.get(i).getPrice();
-            tPrecio.setValue(precioT);   
-        }       
+    public void showPriceTotal(String precio){
+        tPrecio.setText(precio);   
+    }
+
+    public void ponerDatos(Customer cus) {
+        panel.setVisible(false);
+        lSesion.setVisible(true);
+        tNombre.setText(cus.getName());
+        lSesion.setText(cus.getName());
+        tCorreo.setText(cus.getEmail());
+        tDomicilio.setText(cus.getAddress());
+        tTelefono.setText(String.valueOf(cus.getTelephone()));
+        tNTarjeta.setText(String.valueOf(cus.getCardNumber()));
+        setJMenuBar(menuBar);
+        tCorreo.setEditable(false);
+    }
+    
+    public void quitarDatos() {
+        tNombre.setText("");
+        lSesion.setText("");
+        lSesion.setVisible(false);
+        tCorreo.setText("");
+        tDomicilio.setText("");
+        tTelefono.setText("");
+        tNTarjeta.setText("");
+        menuBar.setVisible(false);
+        tCorreo.setEditable(true);
+        panel.setVisible(true);
     }
 }

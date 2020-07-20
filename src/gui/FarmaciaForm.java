@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
+import file.DataBase;
 import model.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -11,11 +7,9 @@ import java.awt.*;
 import java.text.NumberFormat;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
-/**
- *
- * @author danie
- */
-public class FarmaciaForm extends JFrame implements ActionListener{
+
+public class FarmaciaForm extends JFrame{
+    
     private JLabel catalogo, detalle, carrito, filtrar, nombre, fondo;
     private List catalogoList, carritoList;
     private JTextArea detalleList;
@@ -24,30 +18,29 @@ public class FarmaciaForm extends JFrame implements ActionListener{
     private JComboBox filtro;
     private JMenu menu1, menu2, menu3;
     private JMenuBar menuBar;
-    private JMenuItem item1, item2, item3, item4, item5, item6, item7;
+    private JMenuItem mRegistrarse, mIniSesion, mOpciones, mConfi, mSalir, mCerrarSesion, item7;
     private JScrollPane scroll;
     private JFormattedTextField precio;
     public DrugStore farmacia;
     public FarmaciaForm aplicacion;
-    public CuentasApp cuentas;
     
-    public void assignDrugStore (DrugStore farmacia) {
+    
+    public void assign (DrugStore farmacia) {
         this.farmacia = farmacia;
     }
     
-    public void assignCuentas (CuentasApp cuentas){
-        this.cuentas = cuentas;
-    }
-    
     public FarmaciaForm(){
-        //Propiedades de la ventana principal
         setBounds(300, 100, 693, 510);
         setTitle("Farmacia Online");
         setResizable(false);
         setLayout(null);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initComponent();
         
+    }
+    
+    private void initComponent() {
         //Instanciar todos los elementos
         catalogo = new JLabel("Catálogo");
         catalogo.setFont(new Font("Tahoma", 1, 14));
@@ -60,12 +53,12 @@ public class FarmaciaForm extends JFrame implements ActionListener{
         nombre = new JLabel();
         nombre.setFont(new Font("Tohamo", 3, 14));
         fondo = new JLabel();
-        catalogoList = new java.awt.List();
+        catalogoList = new List();
         detalleList = new JTextArea();
         detalleList.setEditable(false);
         scroll = new JScrollPane();
         scroll.setViewportView(detalleList);
-        carritoList = new java.awt.List();
+        carritoList = new List();
         añadirProducto = new Button("Añadir al carrito");
         quitarProducto = new Button("Quitar del carrito");
         comprar = new Button("Realizar compra");
@@ -82,18 +75,18 @@ public class FarmaciaForm extends JFrame implements ActionListener{
             "Higiene cabello", "Cosmética"}));       
         menuBar = new JMenuBar();            
         menu1 = new JMenu("Menu");        
-        item1 = new JMenuItem("Registrarse"); 
-        item2 = new JMenuItem("Iniciar sesión"); 
-        item3 = new JMenu("Opciones");
-        item4 = new JMenu("Configuración");
-        item5 = new JMenuItem("Salir");
-        item6 = new JMenuItem("Cerrar sesión");
-        menu1.add(item1);
-        menu1.add(item2); 
-        menu1.add(item3);    
-        menu1.add(item4);
-        menu1.add(item6);
-        menu1.add(item5);        
+        mRegistrarse = new JMenuItem("Registrarse"); 
+        mIniSesion = new JMenuItem("Iniciar sesión"); 
+        mOpciones = new JMenu("Opciones");
+        mConfi = new JMenu("Configuración");
+        mSalir = new JMenuItem("Salir");
+        mCerrarSesion = new JMenuItem("Cerrar sesión");
+        menu1.add(mRegistrarse);
+        menu1.add(mIniSesion); 
+        menu1.add(mOpciones);    
+        menu1.add(mConfi);
+        menu1.add(mCerrarSesion);
+        menu1.add(mSalir);        
         menuBar.add(menu1);
         setJMenuBar(menuBar);
         
@@ -123,7 +116,7 @@ public class FarmaciaForm extends JFrame implements ActionListener{
         catalogo.setBounds(75, 35, 100, 20);
         detalle.setBounds(480, 35, 100, 20);
         carrito.setBounds(480, 205, 100, 20);
-        nombre.setBounds(230, 10, 200, 20);
+        nombre.setBounds(220, 10, 200, 20);
         filtrar.setBounds(230, 68, 100, 20);
         filtro.setBounds(230, 90, 130, 25);
         añadirProducto.setBounds(250, 240, 100, 25);
@@ -135,49 +128,49 @@ public class FarmaciaForm extends JFrame implements ActionListener{
         receta.setBounds(250, 350, 100, 25);
         scroll.setBounds(390, 60, 240, 120);
         fondo.setBounds(0, -20, 693, 520);
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/farmaciaMujer6.jpg")));
+        fondo.setIcon(new ImageIcon(getClass().getResource("/gui/farmaciaMujer6.jpg")));
         
         
         //añadir un listener a cada elemento
         catalogoList.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                catalogoListActionPerformed(e);
+                catalogoListAction(e);
             }
         });
         
         filtro.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                filtroActionPerformed(e);
+                showCategoryProducts();
             }
         });
         
         añadirProducto.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                añadirProductoActionPerformed(e);
+                añadirProductoAction(e);
             }
         });
         
         quitarProducto.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                quitarProductoActionPerformed(e);
+                quitarProductoAction(e);
             }
         });
         
         recetaE.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                recetaEActionPerformed(e);
+                //recetaEActionPerformed(e);
             }
         });
         
         comprar.addActionListener(new ActionListener(){
             public void actionPerformed (ActionEvent e){
-                comprarActionPerformed(e);
+                comprarAction(e);
             }
         });
         
         carritoList.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                carritoListActionPerformed(e);
+                carritoListAction(e);
             }
         });
         /*
@@ -187,26 +180,25 @@ public class FarmaciaForm extends JFrame implements ActionListener{
             }
         });*/
         
-        item1.addActionListener(new ActionListener(){
+        mRegistrarse.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                RegistrarseForm regis = new RegistrarseForm();
-                regis.assing(cuentas);
+                Registrarse regis = new Registrarse();
             }
         });
         
-        item2.addActionListener(new ActionListener(){
+        mIniSesion.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 iniciarsesion();
             }
         });
         
-        item5.addActionListener(new ActionListener(){
+        mSalir.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 dispose();
             }
         });
         
-        item6.addActionListener(new ActionListener(){
+        mCerrarSesion.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 nombre.setText("");
             }
@@ -214,7 +206,7 @@ public class FarmaciaForm extends JFrame implements ActionListener{
     }
     
     //Evento que origina cada elemento de la ventana
-    private void catalogoListActionPerformed(ActionEvent e){
+    private void catalogoListAction(ActionEvent e){
         Product selected;
         int active = catalogoList.getSelectedIndex();
         int active2 = filtro.getSelectedIndex();
@@ -222,17 +214,14 @@ public class FarmaciaForm extends JFrame implements ActionListener{
         showProductDetails(selected);
     }
     
-    private void filtroActionPerformed(ActionEvent e){
-        showCategoryProducts();
-    }
-    
     public void iniciarsesion(){
-        IniciarSesionForm iniciar = new IniciarSesionForm();
-        iniciar.assignDrugStore(farmacia, this);
-        iniciar.assing(cuentas);        
+        IniciarSesion iniciar = new IniciarSesion(FarmaciaForm.this);
+        if (!iniciar.isPressCancel()) {
+            nombre.setText(iniciar.getNombre());
+        }
     }
     
-    public void añadirProductoActionPerformed(ActionEvent e){
+    public void añadirProductoAction(ActionEvent e){
         int active = catalogoList.getSelectedIndex();
         int active2 = filtro.getSelectedIndex();
         if (active >= 0){
@@ -243,7 +232,7 @@ public class FarmaciaForm extends JFrame implements ActionListener{
         showShoppingCart();
     }
     
-    public void quitarProductoActionPerformed(ActionEvent e){
+    public void quitarProductoAction(ActionEvent e){
         if(farmacia.carro.prods.size() > 0){
             int active = carritoList.getSelectedIndex();
             if (active >= 0){
@@ -254,7 +243,7 @@ public class FarmaciaForm extends JFrame implements ActionListener{
         showPriceTotal();
         showShoppingCart();
     }
-    
+    /*
     public void recetaEActionPerformed(ActionEvent e){        
         if (receta.getText().equals("A123")) {
             farmacia.catalogo.products.get(49).setDiscount();
@@ -276,25 +265,23 @@ public class FarmaciaForm extends JFrame implements ActionListener{
                             "Error", JOptionPane.WARNING_MESSAGE);
         }
     }
-    
-    public void comprarActionPerformed(ActionEvent e){
-        if (nombre.getText().equals("Cirenia Monedero Espino") && !precio.getText().isEmpty()){
-            Pago2Form pagar2 = new Pago2Form();
-            pagar2.assignDrugStore(farmacia, this);
-            pagar2.showPriceTotal();            
-        } else if (nombre.getText().equals("Daniel Martinez Muñoz") && !precio.getText().isEmpty()){
-            Pago3Form pagar3 = new Pago3Form();
-            pagar3.assignDrugStore(farmacia, this);
-            pagar3.showPriceTotal();
-        } else if (!precio.getText().isEmpty()){
+    */
+    public void comprarAction(ActionEvent e){            
+        if (!precio.getText().isEmpty() && nombre.getText().isEmpty()){
             PagoForm pagar = new PagoForm();
-            pagar.assignDrugStore(farmacia, this);
-            pagar.assing(cuentas);
-            pagar.showPriceTotal();
-        }        
+            pagar.showPriceTotal(precio.getText());
+        } else if (!precio.getText().isEmpty() && !nombre.getText().isEmpty()){
+            PagoForm pagar = new PagoForm();
+            pagar.showPriceTotal(precio.getText());
+            DataBase db = DataBase.getDataBase("jdbc:sqlite:FarmaciaBD.db");
+            db.open();
+            Customer cus = db.getCustomer(nombre.getText());
+            db.close();
+            pagar.ponerDatos(cus);
+        }
     }
     
-    public void carritoListActionPerformed(ActionEvent e){
+    public void carritoListAction(ActionEvent e){
         Product selected;
         int active = carritoList.getSelectedIndex();
         selected = farmacia.carro.prods.get(active);
@@ -304,15 +291,6 @@ public class FarmaciaForm extends JFrame implements ActionListener{
     public void historialActionPerformed(ActionEvent e){
         HistorialForm historial = new HistorialForm();
     }*/
-    
-    @Override
-    public void actionPerformed(ActionEvent e){
-    
-    }
-    
-    public static void main (String[] args){
-        FarmaciaForm aplicacion = new FarmaciaForm();
-    }
     
     public void showCategoryProducts(){
         catalogoList.removeAll();
@@ -389,29 +367,21 @@ public class FarmaciaForm extends JFrame implements ActionListener{
     
     public void showProductDetails (Product selected) {
         detalleList.removeAll();
-        if (selected.getDiscount()){
-            detalleList.setText(" Nombre: " + selected.getName() + "\n" + 
-                            " Código: " + selected.getCode() + "\n" + 
-                            " Prospecto: " + selected.getProspect() + "\n" + 
-                            " Precio: " + selected.priceS() + " euros\n" +
-                            " Este producto tiene un descuento del 30%");
-        } else {
-            detalleList.setText(" Nombre: " + selected.getName() + "\n" + 
-                            " Código: " + selected.getCode() + "\n" + 
-                            " Prospecto: " + selected.getProspect() + "\n" + 
-                            " Precio: " + selected.priceS() + " euros");
-        }
-        
+        detalleList.setText(" Nombre: " + selected.getName() + "\n" + 
+                        " Código: " + selected.getCode() + "\n" + 
+                        " Prospecto: " + selected.getProspect() + "\n" + 
+                        " Precio: " + selected.priceS() + " euros");
     }
     
     public void showPriceTotal(){
+        if (farmacia.carro.prods.isEmpty()){
+            precio.setText("");
+            return;
+        }
         float precioT = 0;
         for (int i = 0; i < farmacia.carro.prods.size(); i++) {            
             precioT += farmacia.carro.prods.get(i).getPrice();
             precio.setValue(precioT);            
-        }
-        if (farmacia.carro.prods.isEmpty()){
-            precio.setText("");
         }
     }
     
@@ -419,9 +389,5 @@ public class FarmaciaForm extends JFrame implements ActionListener{
         farmacia.carro.prods.clear();
         carritoList.removeAll();
         precio.setText("");
-    }
-    
-    public void ponerNombre(String nom){
-        nombre.setText(nom);
     }
 }

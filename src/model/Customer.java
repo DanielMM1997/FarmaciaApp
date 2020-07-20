@@ -1,22 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- *
- * @author Usuario
- */
 public class Customer {
     
     private String name;
-    private Prescription prescription;
-    private boolean hasPrescription;
+    private String email;
+    private String address;
+    private int telephone;
+    private int cardNumber;
+    private String contraseña;
     
-    public Customer (String name, boolean hasPrescription) {
+    public Customer (String name, String email, String address, 
+                        int telephone, int cardNumber, String contraseña) {
+        
         this.name = name;
-        this.hasPrescription = hasPrescription;
+        this.email = email;
+        this.address = address;
+        this.telephone = telephone;
+        this.cardNumber = cardNumber;
+        this.contraseña = contraseña;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+    
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public String getAddress() {
+        return this.address;
+    }
+    
+    public int getTelephone() {
+        return this.telephone;
+    }
+
+    public int getCardNumber() {
+        return this.cardNumber;
+    }
+    
+    public String getPassword() {
+        return this.contraseña;
     }
 }

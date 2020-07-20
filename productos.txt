@@ -1,0 +1,50 @@
+Ibuprofeno 600mg/g; 1.75; Alivia el dolor de tipo muscular y articular.
+Crema solar SPF 80; 7.0; Protege de las altas radiaciones del sol, apto para pieles atópicas. 
+Aspirina 500mg; 1.20; El ácido acetilsalicílico, principio activo de este medicamento actúa reduciendo los dolores ocasionales y la fiebre.
+Thrombocid 50g; 9.06; Es una solución en pomada que podremos aplicar de forma cutánea con el fin de mejorar el flujo sanguíneo.
+Preservativos 10u; 8.78; Previene las ETS, además proporcionan más sensibilidad y placer en las relaciones sexuales gracias a su grosor extrafino.
+Cepillo de dientes; 2.35; Cepillo para higiene bucal diaria, con filamentos de dureza media.
+Listerine 200ml; 5.70; Enjuague bucal, para una mayor y más profunda higiene bucal diaria.
+Cepillo electrico; 9.5; Cepillo de dientes que gira la cabeza automáticamente para un mejor cepillado.
+Ceda dental; 3.3; Indicada para eliminar la placa bacteriana y los restos de los alimentos.
+Colágeno+Magnesio 500g; 13.60; El Colágeno y el Magnesio tiene propiedades que ayudan el agotamiento tanto físico y mental.
+Jarabe de polen 200g; 6.25; Contiene vitaminas importantes para un buen funcinamiento vascular.
+Arkomega 45 cápsulas; 8.85; Complemento alimenticio con Omega 3 y Vitamina E, que ayuda a tu corazón a mantener un funcionamiento normal.
+Triptófano 100g; 5.75; Complemento alimenticio a base de triptófano que ayuda a relajar, reducir el cansancio y la fatiga.
+Biberón; 5.75; Usar a partir de un mes de edad. Reduce cólicos gracias a un nuevo sistema.
+Leche infantil en polvo 200g; 14.60; Leche en polvo que contiene todos los nutrientes necesarios para tu bebé.
+Almax 500mg, 30u; 5.95; El medicamento Almax es un antiácido que actúa como neutralizador del exceso de acidez en el estómago.
+Crema solar en spray SPF 50; 7.0; Protege de las altas radiaciones del sol con su nueva fórmula en spray.
+After sun 300ml; 6.5; Ayuda a reparar la salud de piel de los daños producidos por el sol.
+Bronseador SPF 30; 5.65; Ayuda a bronsear tu piel de forma más rápida y segura.
+Pasta de diente 30ml; 1.80; Blanquea tus dientes, protege de bacterias y los fortifica.
+Pañales de 6-12 meses, 30u; 11.40; Pañales desechables con protección de hasta 12h. Respeta el pH de la piel, evitando irritaciones y rojeces.
+Papilla de frutas 600mg; 7.80; Papilla con 8 cereales y frutas, aporta nutrientes que ayuda al desarrollo y crecimiento del bebé.
+Chupete; 3.85; Chupete de silicona para bebés de 0 a 6 meses de edad. Estimula el correcto funcionamiento de la lengua.
+Juanola 30u; 3.20; Las pastillas Juanola otorgan un buen sabor y aliento que perdura durante un buen período de tiempo.
+Strepsil pastillas 20u; 7.26; Medicamento que posee una fuerte acción antiséptica por lo que combate de forma eficaz las infecciones de garganta.
+Aspirina efervecente 200mg; 1.70; El ácido acetilsalicílico, principio activo de este medicamento actúa reduciendo los dolores ocasionales y la fiebre.
+Tantum 20u; 3.06; Medicamento que ayuda a reducir la flema de la garganta.
+Colirio 10ml; 3.75; Alivia la irritación ocular, con extracto de eufrasia y efecto hidratante.
+Thealoz 10ml; 3.75; Es un solución oftálmica que lubrica y humedece los ojos cuando estos presentan una sensación de sequedad.
+Gafas graduadas; 9.75; Gafas de diferentes graduaciones para no forzar la vista.
+Gafas de sol; 8.0; Alta protección contra los rayos solares. Montura y patillas suaves y flexibles.
+Lubricante 100ml; 7.50; Lubricante para relaciones sexuales, con efecto calor y frio, que aporta una sensación excitante.
+Gel para masaje erotico; 8.20; Este gel hidratante está indicado para disfrutar de los momentos más íntimos.
+Energicil 30u; 18.20; Complemento que aumentan el apetito sexual compuesto con maca, guaraná, ginseng y L-arginina.
+Desodorante bio 50ml; 7.00; Desodorante en formato roll on, que aporta frescor durante 24 horas.
+Gel de ducha derma 500ml; 11.63; Gel de ducha atópico para prevenir la sequedad cutánea y proporcionar un baño suave e hidratante.
+Maquinilla de afeitar; 12.50; Maquinilla de Gillette, con un toque de aloe vera y 5 hojas de cuchilla ideal para pieles sencibles.
+Bálsamo 200ml; 15.20; Bálsamo hidratante corporal, con extractos de aceites preciosos de flores. Para pieles muy secas.
+Crema hidratante 300ml; 3.00; Crema hidratante corporal con urea, que regula la capa córnea. Contiene extracto de Tilia cordata.
+Cepillo Beter; 5.60; Cuida de tu pelo ahora más que nunca gracias a los cepillos de Beter.
+Martiderm anticaida 50u; 22.50; Estimula tu cabello desde el interior aportando un extra de vitalidad y fortaleza.
+Acondicionador 200ml; 9.76; Acondicionador para nutrir, reparar y enriquecer el cabello seco. Aporta suavidad e hidratación a cabellos secos.
+Champú letiAt4 320ml; 3.00; Champú emoliente y protector, especialmente indicado para pieles atópicas. Tanto de bebés, niños o adultos.
+Posay solución Micelar 200ml; 5.85; Este producto está indicado para limpiar y desmaquillar la pieles sensibles.
+Crema antiarrugas 50g; 6.71; Tratamiento antiedad indicado para prevenir la aparición de arrugas y líneas de expresión en rostro, cuello y escote.
+Martiderm DSO-crema 40ml; 23.99; Reduce y previene las manchas, gracias a sus agentes como tratamiento despigmentante intensivo.
+Ducray Sérum 30ml; 30.21; Sérum Ducray corrige las manchas más oscuras y gracias al ácido glicólico alisa el relieve de la piel.
+Toallitas desmaquillantes 30u; 6.54; Estas toallitas permiten desmaquillarte de forma rápida y sin irritaciones.
+Crema solar SPF 80; 6.78; Protege de las altas radiaciones del sol con su nueva fórmula.
+Bimanán sabor avena 300g; 10.81; Es un complemento alimenticio indicado para dietas hipercalóricas e hiperproteicas.
