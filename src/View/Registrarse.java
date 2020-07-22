@@ -1,11 +1,11 @@
-package gui;
+package View;
 
-import file.DataBase;
+import Controler.DataBase;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import model.Customer;
+import Model.Customer;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class Registrarse extends JFrame {
@@ -16,6 +16,7 @@ public class Registrarse extends JFrame {
     private JTextField tNombre, tApellidos, tCorreo, tDomicilio,
                         tTelefono, tTarjeta;
     private JPasswordField tContraseña, tContraseña2;
+    private boolean isRegistre = false;
     
     public Registrarse() {
         initComponents();
@@ -27,23 +28,23 @@ public class Registrarse extends JFrame {
     }
                         
     private void initComponents() {
-        lNombre = new JLabel("Nombre");
+        lNombre = new JLabel("Nombre(*)");
         tNombre = new JTextField();
-        lApellidos = new JLabel("Apellidos");
+        lApellidos = new JLabel("Apellidos(*)");
         tApellidos = new JTextField();
-        lCorreo = new JLabel("Correo electronico");
+        lCorreo = new JLabel("Correo electronico(*)");
         tCorreo = new JTextField();
-        lDomicilio = new JLabel("Domicilio(*)");
+        lDomicilio = new JLabel("Domicilio");
         tDomicilio = new JTextField();
-        lTelefono = new JLabel("Telefono(*)");
+        lTelefono = new JLabel("Telefono");
         tTelefono = new JTextField();
-        lContraseña = new JLabel("Contraseña");
+        lContraseña = new JLabel("Contraseña(*)");
         tContraseña = new JPasswordField();
-        lContraseña2 = new JLabel("Confirmar contraseña");
+        lContraseña2 = new JLabel("Confirmar contraseña(*)");
         tContraseña2 = new JPasswordField();
-        lTarjeta = new JLabel("Tajerta Credito(*)");
+        lTarjeta = new JLabel("Tajerta Credito");
         tTarjeta = new JTextField();
-        lAyuda = new JLabel("(*) Campos opcionales");
+        lAyuda = new JLabel("(*) Campos obligatorios");
         bAceptar = new Button("Aceptar");
         bCancelar = new Button("Cancelar");
 
@@ -67,7 +68,7 @@ public class Registrarse extends JFrame {
         add(bCancelar);
         add(bAceptar);
 
-        lNombre.setBounds(30, 20, 47, 20);
+        lNombre.setBounds(30, 20, 60, 20);
         tNombre.setBounds(30, 40, 100, 25);
         lApellidos.setBounds(150, 20, 70, 22);
         tApellidos.setBounds(150, 40, 150, 25);
@@ -101,32 +102,64 @@ public class Registrarse extends JFrame {
     }                                                  
 
     private boolean validarDatos() {
-        return true;
+        boolean validacion = false;
+        if (tNombre.getText().length() > 2) {
+            validacion = true;
+        }
+        /*if (!validacion) {
+            //poner en un jlabel la advertencia
+            return validacion;
+        }*/
+        if (tApellidos.getText().length() > 2) {
+            validacion = true;
+        }
+        /*if (!validacion) {
+            //poner en un jlabel la advertencia
+            return validacion;
+        }*/
+        if (tCorreo.getText().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+            validacion = true;
+        }
+        /*if (!validacion) {
+            //poner en un jlabel la advertencia
+            return validacion;
+        }*/
+        if (tCorreo.getText().length() > 2) {
+            validacion = true;
+        }
+        /*if (!validacion) {
+            //poner en un jlabel la advertencia
+            return validacion;
+        }*/
+        if (tContraseña.getText().length() > 5 && tContraseña2.getText().equals(tContraseña.getText())) {
+            validacion = true;
+        }
+        /*if (!validacion) {
+            //poner en un jlabel la advertencia
+            return validacion;
+        }*/
+        return validacion;
     }
     
     private void registrar() {
-        String nombre = tNombre.getText() + tApellidos.getText();
+        String nombre = tNombre.getText() + " " + tApellidos.getText();
         String correo = tCorreo.getText();
         String domicilio = tDomicilio.getText();
-        int telefono;
-        if (!tTelefono.getText().isEmpty()) {
+        int telefono = 0;
+        int tarjeta = 0;
+        try {
             telefono = Integer.valueOf(tTelefono.getText());
-        } else {
-            telefono = 0;
-        }
-        int tarjeta;
-        if(!tTarjeta.getText().isEmpty()) {
             tarjeta = Integer.valueOf(tTarjeta.getText());
-        } else {
-            tarjeta = 0;
-        }
+        } catch(Exception ex) {}
         String contraseña = DigestUtils.md5Hex(tContraseña.getText());
         DataBase db = DataBase.getDataBase("jdbc:sqlite:FarmaciaBD.db");
         db.open();
         db.insertCustomer(new Customer(nombre, correo, domicilio, telefono, tarjeta, contraseña));
         db.close();
         JOptionPane.showMessageDialog(bAceptar, "Se ha registrado correctamente",
-                            "Error", JOptionPane.ERROR_MESSAGE);
+                            "OK", JOptionPane.INFORMATION_MESSAGE);
+        isRegistre = true;
+        setVisible(false);
     }
     
     private void bAceptarAction(ActionEvent evt) {                                         
@@ -138,12 +171,11 @@ public class Registrarse extends JFrame {
         }
     }                                                                                  
 
-    public static void main(String args[]) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Registrarse().setVisible(true);
-            }
-        });
+    public boolean isResigtreCorretly() {
+        return this.isRegistre;
+    }
+
+    public String getCorreo() {
+        return tCorreo.getText();
     }
 }

@@ -1,7 +1,7 @@
 package file;
 
-import model.Product;
-import model.Prospect;
+import Model.Product;
+import Model.Prospect;
 
 public class ProductBuilder {
 

@@ -1,19 +1,19 @@
-package gui;
+package View;
 
-import file.DataBase;
+import Controler.DataBase;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import model.Customer;
+import Model.Customer;
 import org.apache.commons.codec.digest.DigestUtils;
 
 
 public class IniciarSesion extends JDialog {
     
     private Button bAceptar, bCancelar;
-    private JLabel lTitulo, lContraseña, lNombre;
+    private JLabel lTitulo, lContraseña, lCorreo;
     private JPasswordField tContraseña;
-    private JTextField tNombre;
+    private JTextField tCorreo;
     private JPanel fondo;
     public PagoForm pago;
     private boolean iscancel;
@@ -32,17 +32,17 @@ public class IniciarSesion extends JDialog {
     }
                        
     private void initComponents() {
-        tNombre = new JTextField();
+        tCorreo = new JTextField();
         tContraseña = new JPasswordField();
         lTitulo = new JLabel("Iniciar Sesión");
-        lNombre = new JLabel("Correo E:");
+        lCorreo = new JLabel("Correo E:");
         lContraseña = new JLabel("Contraseña:");
         bAceptar = new Button("Aceptar");
         bCancelar = new Button("Cancelar");
         fondo = new JPanel();
         add(lTitulo);
-        add(lNombre);
-        add(tNombre);
+        add(lCorreo);
+        add(tCorreo);
         add(lContraseña);
         add(tContraseña);
         add(bAceptar);
@@ -52,9 +52,9 @@ public class IniciarSesion extends JDialog {
         this.setBackground(Color.yellow);//setBackground(new Color(44, 193, 198));
         lTitulo.setFont(new Font("Century Schoolbook", 1, 24));
         lTitulo.setBounds(60, 0, 210, 50);
-        lNombre.setFont(new Font("Tahoma", 0, 12));
-        lNombre.setBounds(40, 60, 70, 23);
-        tNombre.setBounds(110, 60, 140, 25);
+        lCorreo.setFont(new Font("Tahoma", 0, 12));
+        lCorreo.setBounds(40, 60, 70, 23);
+        tCorreo.setBounds(110, 60, 140, 25);
         lContraseña.setFont(new Font("Tahoma", 0, 12));
         lContraseña.setBounds(40, 90, 80, 20);
         tContraseña.setBounds(110, 90, 140, 25);
@@ -99,7 +99,7 @@ public class IniciarSesion extends JDialog {
     private void comprobarCuenta(){
         DataBase db = DataBase.getDataBase("jdbc:sqlite:FarmaciaBD.db");
         db.open();
-        Customer cus = db.verifyAccount(tNombre.getText(), DigestUtils.md5Hex(tContraseña.getText()));
+        Customer cus = db.verifyAccount(tCorreo.getText(), DigestUtils.md5Hex(tContraseña.getText()));
         db.close();
         if (cus != null) {
             setVisible(false);
@@ -114,8 +114,8 @@ public class IniciarSesion extends JDialog {
         }
     }    
 
-    public String getNombre() {
-        return tNombre.getText();
+    public String getCorreo() {
+        return tCorreo.getText();
     }
     
     public boolean isPressCancel() {

@@ -1,12 +1,11 @@
-package gui;
-import file.DataBase;
+package View;
+
+import Model.DrugStore;
+import Model.Customer;
+import Controler.DataBase;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.text.NumberFormat;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.NumberFormatter;
-import model.*;
 
 public class PagoForm extends JFrame implements ActionListener{
     private JLabel lNombre, lCorreo, lDomicilio, lTelefono, lNTarjeta, 
@@ -156,7 +155,7 @@ public class PagoForm extends JFrame implements ActionListener{
         panel.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
         panel.setOpaque(false);
         fondo.setBounds(0, -9, 500, 400);
-        fondo.setIcon(new ImageIcon(getClass().getResource("/gui/cajeroTarjeta3.jpg")));
+        fondo.setIcon(new ImageIcon(getClass().getResource("/View/cajeroTarjeta3.jpg")));
         
         bAtras.addActionListener(this);
         bPagar.addActionListener(this);
@@ -224,13 +223,20 @@ public class PagoForm extends JFrame implements ActionListener{
         }
         if (botonPulsado == bRegistrarse) {
             Registrarse regis = new Registrarse();
+            if (regis.isResigtreCorretly()) {
+                DataBase db = DataBase.getDataBase("jdbc:sqlite:FarmaciaBD.db");
+                db.open();
+                Customer cus = db.getCustomer(regis.getCorreo());
+                db.close();
+                ponerDatos(cus);
+            }
         }
         if (botonPulsado == bISesion) {
             IniciarSesion iniciar = new IniciarSesion(this);
             if (!iniciar.isPressCancel()) {
                 DataBase db = DataBase.getDataBase("jdbc:sqlite:FarmaciaBD.db");
                 db.open();
-                Customer cus = db.getCustomer(iniciar.getNombre());
+                Customer cus = db.getCustomer(iniciar.getCorreo());
                 db.close();
                 ponerDatos(cus);
             }
@@ -238,12 +244,6 @@ public class PagoForm extends JFrame implements ActionListener{
         if (botonPulsado == mCerrarSesion) {
             quitarDatos();
         }
-    }
-    
-    
-    
-    public static void main(String[] args){
-        PagoForm pagar = new PagoForm();
     }
     
     public void showPriceTotal(String precio){

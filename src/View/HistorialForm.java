@@ -1,6 +1,5 @@
-package gui;
+package View;
 
-import model.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;

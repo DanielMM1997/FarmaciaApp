@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import model.Product;
+import Model.Product;
 
 public class ProductsListReader {
 

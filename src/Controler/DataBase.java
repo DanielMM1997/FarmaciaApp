@@ -1,4 +1,4 @@
-package file;
+package Controler;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.Customer;
-import model.Product;
-import model.Prospect;
+import Model.Customer;
+import Model.Product;
+import Model.Prospect;
 
 public class DataBase {
     private final String URL;

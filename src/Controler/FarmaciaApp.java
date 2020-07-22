@@ -1,8 +1,13 @@
-package farmaciaapp;
+package Controler;
 
+import Model.DrugStore;
+import Model.ShoppingCart;
+import Model.Product;
+import Model.Catalogue;
+import Model.Category;
+import Model.Date;
+import View.FarmaciaForm;
 import file.*;
-import model.*;
-import gui.*;
 import java.util.List;
 
 public class FarmaciaApp {
@@ -23,7 +28,6 @@ public class FarmaciaApp {
             catalogue.addProduct(pro);
             ca.addProductToCategory(pro);
         }
-        
         
         Category ca1 = new Category("Cremas solares");
         Category ca2 = new Category("Higiene bucal");

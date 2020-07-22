@@ -1,6 +1,8 @@
-package gui;
-import file.DataBase;
-import model.*;
+package View;
+import Model.DrugStore;
+import Model.Product;
+import Model.Customer;
+import Controler.DataBase;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -128,7 +130,7 @@ public class FarmaciaForm extends JFrame{
         receta.setBounds(250, 350, 100, 25);
         scroll.setBounds(390, 60, 240, 120);
         fondo.setBounds(0, -20, 693, 520);
-        fondo.setIcon(new ImageIcon(getClass().getResource("/gui/farmaciaMujer6.jpg")));
+        fondo.setIcon(new ImageIcon(getClass().getResource("/View/farmaciaMujer6.jpg")));
         
         
         //añadir un listener a cada elemento
@@ -182,7 +184,7 @@ public class FarmaciaForm extends JFrame{
         
         mRegistrarse.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                Registrarse regis = new Registrarse();
+                registrarse();
             }
         });
         
@@ -214,10 +216,16 @@ public class FarmaciaForm extends JFrame{
         showProductDetails(selected);
     }
     
+    public void registrarse() {
+        Registrarse regis = new Registrarse();
+        if (regis.isResigtreCorretly()) {
+            nombre.setText(regis.getCorreo());
+        }
+    }
     public void iniciarsesion(){
         IniciarSesion iniciar = new IniciarSesion(FarmaciaForm.this);
         if (!iniciar.isPressCancel()) {
-            nombre.setText(iniciar.getNombre());
+            nombre.setText(iniciar.getCorreo());
         }
     }
     
@@ -243,29 +251,7 @@ public class FarmaciaForm extends JFrame{
         showPriceTotal();
         showShoppingCart();
     }
-    /*
-    public void recetaEActionPerformed(ActionEvent e){        
-        if (receta.getText().equals("A123")) {
-            farmacia.catalogo.products.get(49).setDiscount();
-            farmacia.carro.addProduct(farmacia.catalogo.products.get(49));   
-            showPriceTotal();
-            showShoppingCart();
-        } else if (receta.getText().equals("B123")) {
-            farmacia.catalogo.products.get(24).setDiscount();
-            farmacia.carro.addProduct(farmacia.catalogo.products.get(24));   
-            showPriceTotal();
-            showShoppingCart();
-        } else if(receta.getText().equals("C123")) {
-            farmacia.catalogo.products.get(15).setDiscount();
-            farmacia.carro.addProduct(farmacia.catalogo.products.get(15));   
-            showPriceTotal();
-            showShoppingCart();
-        } else {
-            JOptionPane.showMessageDialog(receta, "El codigo introducido es incorrecto.",
-                            "Error", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-    */
+    
     public void comprarAction(ActionEvent e){            
         if (!precio.getText().isEmpty() && nombre.getText().isEmpty()){
             PagoForm pagar = new PagoForm();
